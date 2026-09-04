@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Misión Lenguaje 2° Básico</title>
+  <style>
+    body {
+      font-family: 'Comic Sans MS', 'Chalkboard SE', sans-serif;
+      background-color: #f0f8ff;
+      color: #333;
+      padding: 15px;
+      max-width: 700px;
+      margin: 0 auto;
+    }
+    .card {
+      background: white;
+      border-radius: 15px;
+      padding: 20px;
+      margin-bottom: 15px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+      border: 3px solid #4a90e2;
+    }
+    h1, h2 {
+      color: #2c3e50;
+      text-align: center;
+    }
+    .star-score {
+      font-size: 24px;
+      text-align: center;
+      background: #fff3cd;
+      padding: 10px;
+      border-radius: 10px;
+      font-weight: bold;
+      color: #856404;
+    }
+    .btn {
+      background-color: #28a745;
+      color: white;
+      border: none;
+      padding: 10px 15px;
+      border-radius: 10px;
+      font-size: 16px;
+      cursor: pointer;
+      width: 100%;
+      margin-top: 10px;
+      font-weight: bold;
+    }
+    .btn-option {
+      background-color: #e9ecef;
+      color: #333;
+      border: 2px solid #ced4da;
+      text-align: left;
+      margin: 5px 0;
+    }
+    .btn-option:hover {
+      background-color: #d3d3d3;
+    }
+    .reading-box {
+      background-color: #fff9e6;
+      border: 2px dashed #f1c40f;
+      padding: 15px;
+      border-radius: 10px;
+      line-height: 1.6;
+    }
+    .text-highlight {
+      background-color: #ffeb3b;
+      cursor: pointer;
+    }
+    textarea {
+      width: 95%;
+      height: 70px;
+      border-radius: 8px;
+      border: 2px solid #4a90e2;
+      padding: 8px;
+      font-size: 16px;
+      font-family: inherit;
+    }
+    .checklist {
+      background: #e8f4f8;
+      padding: 10px;
+      border-radius: 8px;
+      font-size: 14px;
+      margin-top: 8px;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>⭐ Misión Comprensión Lectora ⭐</h1>
+  <div class="star-score">Estrellas ganadas: <span id="stars">0</span> 🌟</div>
+
+  <!-- SECCIÓN 1: DATOS -->
+  <div class="card">
+    <h2>👋 ¡Bienvenido/a al Desafío!</h2>
+    <p><strong>Escribe tu Nombre:</strong> (Recuerda la mayúscula inicial)</p>
+    <input type="text" id="studentName" placeholder="Ej: Amelia..." style="width:90%; padding:8px; font-size:16px;">
+  </div>
+
+  <!-- SECCIÓN 2: LECTURA -->
+  <div class="card">
+    <h2>📖 Lectura: Salida pedagógica por el bosque</h2>
+    <div class="reading-box">
+      <p>En marzo, los estudiantes de segundo básico salieron a explorar el bosque junto a su profesor de ciencias Roberto.</p>
+      <p>Era el fin del verano, y los árboles aún tenían muchas hojas de distintas formas y colores. Los árboles estaban <strong>frondosos</strong>, entonces daban mucha sombra.</p>
+      <p>Los niños se sentaron bajo un roble a descansar, y el profesor de ciencias les explicó que algunos de los árboles del bosque perderían sus hojas durante el otoño.</p>
+      <p>Juan, uno de los estudiantes de segundo básico, quedó maravillado porque le parecía increíble pensar que los árboles fueran capaces de perder hojas y luego volver a hacerlas crecer.</p>
+    </div>
+  </div>
+
+  <!-- SECCIÓN 3: PREGUNTAS -->
+  <div class="card">
+    <h3>1. ¿Qué significa "frondosos" según el texto?</h3>
+    <button class="btn btn-option" onclick="checkQuiz(this, false)">a) Que tiene muchos frutos.</button>
+    <button class="btn btn-option" onclick="checkQuiz(this, true)">b) Que tiene muchas hojas y da mucha sombra.</button>
+    <button class="btn btn-option" onclick="checkQuiz(this, false)">c) Que son árboles muy pequeños.</button>
+  </div>
+
+  <div class="card">
+    <h3>2. ¿Cómo se llama el profesor de ciencias?</h3>
+    <p style="color:#d9534f; font-size:14px;">💡 Pista: Empieza respondiendo: <em>"El profesor de ciencias se llama..."</em></p>
+    <textarea id="q1" placeholder="Escribe tu respuesta aquí..."></textarea>
+    <div class="checklist">
+      ✔ Revisa: ¿Pusiste mayúscula inicial? ¿Punto final? ¿Nombre propio con mayúscula?
+    </div>
+    <button class="btn" onclick="addStar()">¡Revisé mi respuesta y la envié! ✨</button>
+  </div>
+
+  <div class="card">
+    <h3>3. ¿Cómo se llama el estudiante que quedó maravillado?</h3>
+    <p style="color:#d9534f; font-size:14px;">💡 Pista: Empieza respondiendo: <em>"El estudiante que quedó maravillado se llama..."</em></p>
+    <textarea id="q2" placeholder="Escribe tu respuesta aquí..."></textarea>
+    <button class="btn" onclick="addStar()">¡Revisé mi respuesta y la envié! ✨</button>
+  </div>
+
+  <script>
+    let starCount = 0;
+    function addStar() {
+      starCount += 1;
+      document.getElementById('stars').innerText = starCount;
+      alert('¡Excelente trabajo! Ganaste una estrella 🌟');
+    }
+
+    function checkQuiz(btn, isCorrect) {
+      if(isCorrect) {
+        btn.style.backgroundColor = '#d4edda';
+        alert('¡Correcto! 🌟 Ganaste una estrella.');
+        addStar();
+      } else {
+        btn.style.backgroundColor = '#f8d7da';
+        alert('Casi casi... ¡Vuelve a leer el párrafo de la lectura e inténtalo de nuevo!');
+      }
+    }
+  </script>
+</body>
+</html>
